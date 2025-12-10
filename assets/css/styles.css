@@ -771,11 +771,18 @@ footer {
 .partner-icon {
   width: 48px;
   height: 48px;
+  min-width: 48px;
+  /* Force size in Firefox flex containers */
+  min-height: 48px;
+  flex-shrink: 0;
+  /* Prevent squishing */
   object-fit: contain;
   border-radius: 8px;
   background: white;
   /* Ensure favicon has contrast if transparent */
   padding: 4px;
+  display: block;
+  /* Remove inline spacing quirks */
 }
 
 /* Modal Styles */
