@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Nexaware Technologies LLC</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon16.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Nexaware Technologies LLC – Next-Generation Technology. Today."
-  />
+  <meta name="description" content="Nexaware Technologies LLC – Next-Generation Technology. Today." />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "7rNiUW6MpRSMjB964",
+      });
+    })();
+  </script>
 </head>
+
 <body>
   <div class="page">
     <header>
       <div class="nav-inner">
-        <div class="nav-left">
-          <!-- Replace placeholder-logo.png with your real logo -->
-          <img src="assets/images/placeholder-logo.png" alt="Nexaware Logo" class="nav-logo" />
+        <a href="#home" class="nav-left">
+          <!-- Updated Logo -->
+          <img src="assets/images/nexaware-logo.png" alt="Nexaware Logo" class="nav-logo" />
           <div class="nav-brand-text">
             <div class="nav-brand-main">Nexaware</div>
             <div class="nav-brand-sub">Technologies LLC</div>
           </div>
-        </div>
+        </a>
 
         <nav class="nav-menu">
           <a href="#services">Services</a>
@@ -35,8 +44,9 @@
         </nav>
 
         <div class="nav-right">
-          <button id="themeToggle" class="nav-ghost-btn" type="button">
-            🌞 / 🌙
+          <button id="themeToggle" class="nav-ghost-btn" type="button" aria-label="Toggle theme">
+            <i data-lucide="sun" class="icon-sun"></i>
+            <i data-lucide="moon" class="icon-moon"></i>
           </button>
           <button class="nav-cta" type="button" data-scroll-target="#contact">
             Schedule a Call
@@ -80,7 +90,7 @@
 
           <aside>
             <div class="hero-logo-card">
-              <img src="assets/images/placeholder-logo.png" alt="Nexaware Technologies Logo" />
+              <img src="assets/images/nexaware-logo.png" alt="Nexaware Technologies Logo" />
               <div class="hero-logo-name">Nexaware Technologies LLC</div>
               <div class="hero-logo-sub">Next-Generation Technology. Today.</div>
 
@@ -188,6 +198,23 @@
         </div>
       </section>
 
+      <section id="partners">
+        <div class="section-inner">
+          <h2 class="section-title">Our Service Partners & Clients</h2>
+          <p class="section-subtitle">Companies we support with engineering, modernization, and architecture solutions.
+          </p>
+
+          <ul class="partner-list">
+            <li>
+              <img src="https://www.neocapsolutions.com/favicon.ico" class="partner-icon" alt="NeoCapSolutions Icon">
+              <span><strong>NeoCapSolutions</strong> — Architecture & engineering support for Vessel PMS &
+                Operations.</span>
+            </li>
+            <!-- More clients can be added here -->
+          </ul>
+        </div>
+      </section>
+
       <section class="cta" id="contact">
         <div class="section-inner">
           <h2 class="cta-title">Let’s discuss your next project.</h2>
@@ -196,8 +223,8 @@
             next steps – not a generic sales pitch.
           </p>
 
-          <button class="btn-primary" type="button" onclick="window.location.href='mailto:hello@nexaware.com';">
-            Email: hello@nexaware.com
+          <button class="btn-primary" type="button" id="openContactModalFooter" title="click here to contact us">
+            Get in Touch
           </button>
         </div>
       </section>
@@ -216,6 +243,44 @@
     </footer>
   </div>
 
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Close modal">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="modal-header">
+        <h3 class="modal-title">Get in Touch</h3>
+        <p class="modal-subtitle">Fill out the form below and we'll get back to you shortly.</p>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="john@company.com" pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            title="Please enter a valid email address (e.g., user@company.com)" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="How can we help you?" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full">Send Message</button>
+        <div id="formStatus" class="form-status"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="assets/js/app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
+
 </html>
