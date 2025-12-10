@@ -54,6 +54,8 @@ body.dark {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  /* Offset for fixed header */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -62,9 +64,9 @@ body {
   background: var(--color-bg);
   /* Matte Plastic Texture Simulation */
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.05) 0%, transparent 60%);
   background-size: 20px 20px, 20px 20px, 100% 100%;
   color: var(--color-text);
   line-height: 1.6;
@@ -167,9 +169,11 @@ a {
 
 /* Header / Navbar */
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 50;
+  width: 100%;
+  /* Fixed positioning ensures it stays top even if parents overflow */
+  z-index: 1000;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -279,17 +283,20 @@ body.dark header {
 }
 
 .nav-cta {
-  background: var(--color-primary);
-  color: white;
+  background: color-mix(in srgb, var(--color-surface) 50%, transparent);
+  color: var(--color-primary);
   padding: 10px 20px;
   font-size: 0.9rem;
-  box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--color-primary) 40%, transparent);
+  border: 1px solid var(--color-border-soft);
+  box-shadow: none;
+  border-radius: var(--radius-full);
 }
 
 .nav-cta:hover {
-  transform: translateY(-1px);
-  background: var(--color-primary-dark);
-  box-shadow: 0 8px 16px -4px color-mix(in srgb, var(--color-primary) 50%, transparent);
+  background: var(--color-surface-soft);
+  color: var(--color-text);
+  border-color: color-mix(in srgb, var(--color-text) 10%, transparent);
+  transform: translateY(0);
 }
 
 .nav-ghost-btn {
@@ -583,14 +590,7 @@ body.dark .hero-logo-card {
 }
 
 /* Show/Hide logic for theme icons */
-html:not(.dark) .icon-sun {
-  display: none;
-}
-
-/* In light mode, show moon (to switch to dark) */
-html.dark .icon-moon {
-  display: none;
-}
+/* CSS removed: incorrect html selectors */
 
 /* In dark mode, show sun (to switch to light) */
 
@@ -734,4 +734,124 @@ footer {
   .btn-secondary {
     width: 100%;
   }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 24px;
+}
+
+.modal-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+body.dark .modal-content {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.modal-overlay.is-active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-muted);
+  padding: 8px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--color-surface-soft);
+  color: var(--color-text);
+}
+
+.modal-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.modal-subtitle {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border-soft);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+.w-full {
+  width: 100%;
 }

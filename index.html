@@ -11,20 +11,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "7rNiUW6MpRSMjB964",
+      });
+    })();
+  </script>
 </head>
 
 <body>
   <div class="page">
     <header>
       <div class="nav-inner">
-        <div class="nav-left">
+        <a href="#home" class="nav-left">
           <!-- Updated Logo -->
           <img src="assets/images/nexaware-logo.png" alt="Nexaware Logo" class="nav-logo" />
           <div class="nav-brand-text">
             <div class="nav-brand-main">Nexaware</div>
             <div class="nav-brand-sub">Technologies LLC</div>
           </div>
-        </div>
+        </a>
 
         <nav class="nav-menu">
           <a href="#services">Services</a>
@@ -196,7 +205,7 @@
             next steps – not a generic sales pitch.
           </p>
 
-          <button class="btn-primary" type="button" onclick="window.location.href='mailto:hello@nexaware.com';">
+          <button class="btn-primary" type="button" id="openContactModalFooter">
             Email: hello@nexaware.com
           </button>
         </div>
@@ -215,6 +224,38 @@
       </div>
     </footer>
   </div>
+
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Close modal">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="modal-header">
+        <h3 class="modal-title">Get in Touch</h3>
+        <p class="modal-subtitle">Fill out the form below and we'll get back to you shortly.</p>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="john@company.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="How can we help you?" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full">Send Message</button>
+        <div id="formStatus" class="form-status"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+
 
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="assets/js/app.js"></script>
