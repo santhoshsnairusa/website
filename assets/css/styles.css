@@ -736,6 +736,48 @@ footer {
   }
 }
 
+/* Partners Section */
+#partners {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border-soft);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.partner-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto 0;
+  max-width: 800px;
+}
+
+.partner-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border-soft);
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.partner-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary);
+}
+
+.partner-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: white;
+  /* Ensure favicon has contrast if transparent */
+  padding: 4px;
+}
+
 /* Modal Styles */
 .modal-overlay {
   position: fixed;
