@@ -770,7 +770,7 @@ footer {
   padding: 0 1.5rem;
   /* Horizontal padding */
   border-radius: 8px;
-  background: white;
+  background: var(--color-surface);
   border: 1px solid var(--color-border-soft);
   width: 100%;
   height: 64px;
@@ -780,10 +780,10 @@ footer {
 }
 
 .partner-link:hover {
-  opacity: 1;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-hover);
   border-color: var(--color-primary);
+  opacity: 1;
 }
 
 .partner-icon {
@@ -794,9 +794,10 @@ footer {
   min-height: 24px;
   display: block;
   object-fit: contain;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
+  background: white;
+  /* Ensure visibility on dark theme */
+  padding: 2px;
+  border-radius: 4px;
   border: none;
 }
 
