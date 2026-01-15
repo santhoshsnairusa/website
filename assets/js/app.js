@@ -148,8 +148,8 @@
       btn.innerText = "Sending...";
       btn.disabled = true;
 
-      const serviceID = 'service_uwppumc';
-      const templateID = 'template_38qn096';
+      const serviceID = 'service_nvv1u5w';
+      const templateID = 'template_byhxj3c';
 
       emailjs.sendForm(serviceID, templateID, this)
         .then(() => {
